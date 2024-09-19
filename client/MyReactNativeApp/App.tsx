@@ -5,14 +5,10 @@ import { useEffect } from 'react';
 
 export default function App() {
 
-  useEffect(() => {
-    console.log("Firebase app initialized:", firebaseConfig.app.name);
-  }, []);
-
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>This is just a text from Pranet hjhjhj</Text>
+      <Text>This is just a text from Pranet hjhjhjbgbgbgg</Text>
       <StatusBar style="auto" />
     </View>
   );

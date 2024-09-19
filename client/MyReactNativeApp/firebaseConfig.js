@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "@react-native-firebase/firestore";
 
 // Firebase configuration using expo-constants
-const firebaseConfig = {
+/*const firebaseConfig = {
   apiKey: Constants.manifest.extra.firebaseApiKey,
   authDomain: Constants.manifest.extra.firebaseAuthDomain,
   databaseURL: Constants.manifest.extra.firebaseDatabaseURL,
@@ -12,6 +12,17 @@ const firebaseConfig = {
   messagingSenderId: Constants.manifest.extra.firebaseMessagingSenderId,
   appId: Constants.manifest.extra.firebaseAppId,
   measurementId: Constants.manifest.extra.firebaseMeasurementId,
+};*/
+
+const firebaseConfig = {
+  apiKey: Constants.expoConfig.extra.apiKey,
+  authDomain: Constants.expoConfig.extra.authDomain,
+  databaseURL: Constants.expoConfig.extra.databaseURL, 
+  projectId: Constants.expoConfig.extra.projectId,
+  storageBucket: Constants.expoConfig.extra.storageBucket,
+  messagingSenderId: Constants.expoConfig.extra.messagingSenderId,
+  appId: Constants.expoConfig.extra.appId,
+  measurementId: Constants.expoConfig.extra.measurementId
 };
 
 // Initialize Firebase
