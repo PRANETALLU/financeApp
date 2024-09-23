@@ -1,14 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { auth } from './firebaseConfig.js';
-import { useEffect } from 'react';
+import { Button, StyleSheet, Text, View, FlatList } from 'react-native';
+import { database } from './firebaseConfig.js'; // Adjust the import
+import { collection, getDocs } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+
+// Define User type
+type User = {
+  id: string;
+  name: string;
+  age: number;
+};
 
 export default function App() {
+  const [users, setUsers] = useState<User[]>([]); // Set the type here
+
+  const fetchUsers = async () => {
+    try {
+      const collectionRef = collection(database, 'users');
+      const snapshot = await getDocs(collectionRef);
+      const userList = snapshot.docs.map(doc => {
+        const { name, age } = doc.data();
+        return { id: doc.id, name, age }; // Return an object with id, name, and age
+      });
+      setUsers(userList); // Now this matches the User[] type
+    } catch (error) {
+      console.error("Error fetching users: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>This is just a text from Pranet hjhjhjbgbgbggvffvfv</Text>
+      <Text>Users List:</Text>
+      <FlatList
+        data={users}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <Text>{item.name} - Age: {item.age}</Text>
+        )}
+      />
+      <Button title="Fetch Users" onPress={fetchUsers} />
       <StatusBar style="auto" />
     </View>
   );
