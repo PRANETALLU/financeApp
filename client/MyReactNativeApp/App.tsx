@@ -3,6 +3,7 @@ import { Button, StyleSheet, Text, View, FlatList } from 'react-native';
 import { database } from './firebaseConfig.js'; // Adjust the import
 import { collection, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import RootNavigator from './navigation/RootNavigator';
 
 // Define User type
 type User = {
@@ -44,6 +45,7 @@ export default function App() {
       />
       <Button title="Fetch Users" onPress={fetchUsers} />
       <StatusBar style="auto" />
+      <RootNavigator />
     </View>
   );
 }
