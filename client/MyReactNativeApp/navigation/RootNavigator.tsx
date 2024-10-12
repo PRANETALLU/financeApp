@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import SignUp from '../auth/SignUp';
 import Login from '../auth/Login';
 import { Test } from '../auth/TestPage';
 import { UserAuthProvider } from '../context/UserContext';
+import { useUserAuth } from '../context/UserContext';
 
 const RootNavigator = () => {
+
   return (
     <UserAuthProvider>
       <NavigationContainer>
